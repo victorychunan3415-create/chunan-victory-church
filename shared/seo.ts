@@ -29,9 +29,13 @@ export interface SitemapEntry {
 // 網站基本配置
 export const SITE_CONFIG = {
   name: '竹南勝利堂',
-  url: process.env.VITE_APP_URL || 'https://chunan-victory-church.pages.dev',
+  url: typeof window !== 'undefined' 
+    ? (import.meta.env.VITE_APP_URL || 'https://chunan-victory-church.pages.dev')
+    : (process.env.VITE_APP_URL || 'https://chunan-victory-church.pages.dev'),
   description: '竹南勝利堂是一個充滿溫暖與生命力的教會社群。我們相信每個人都能在這裡找到屬靈的家，經歷神的愛與恩典，與弟兄姊妹一同成長。',
-  logo: process.env.VITE_APP_LOGO || '/logo.png',
+  logo: typeof window !== 'undefined'
+    ? (import.meta.env.VITE_APP_LOGO || '/logo.png')
+    : (process.env.VITE_APP_LOGO || '/logo.png'),
   author: '竹南勝利堂',
   email: 'contact@victory-church.com',
   phone: '+886-XXXX-XXXX',
