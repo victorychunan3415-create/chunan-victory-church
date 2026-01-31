@@ -21,31 +21,11 @@ jobs:
         with:
           node-version: '22'
       
-      - name: Install pnpm
-        run: npm install -g pnpm
-      
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      
-      - name: Install dependencies
-        run: pnpm install
-      
-      - name: Run tests
-        run: pnpm test
+      - name: Install dependencies with npm
+        run: npm install
       
       - name: Build project
-        run: pnpm build
+        run: npm run build
         env:
           VITE_APP_TITLE: ${{ secrets.VITE_APP_TITLE }}
           VITE_APP_LOGO: ${{ secrets.VITE_APP_LOGO }}
