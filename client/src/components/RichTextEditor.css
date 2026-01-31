@@ -1,0 +1,112 @@
+.rich-text-editor {
+  background-color: white;
+}
+
+.editor-content {
+  min-height: 300px;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.editor-content .ProseMirror {
+  outline: none;
+}
+
+.editor-content .ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.editor-content .ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.75em 0;
+}
+
+.editor-content .ProseMirror h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 0.83em 0;
+}
+
+.editor-content .ProseMirror p {
+  margin: 1em 0;
+}
+
+.editor-content .ProseMirror ul,
+.editor-content .ProseMirror ol {
+  padding-left: 2em;
+  margin: 1em 0;
+}
+
+.editor-content .ProseMirror li {
+  margin: 0.5em 0;
+}
+
+.editor-content .ProseMirror blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 1em;
+  margin: 1em 0;
+  color: #666;
+  font-style: italic;
+}
+
+.editor-content .ProseMirror code {
+  background-color: #f3f3f3;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.editor-content .ProseMirror pre {
+  background-color: #f3f3f3;
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.editor-content .ProseMirror pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #000;
+}
+
+.editor-content .ProseMirror a {
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.editor-content .ProseMirror a:hover {
+  color: #0052a3;
+}
+
+.editor-content .ProseMirror strong {
+  font-weight: bold;
+}
+
+.editor-content .ProseMirror em {
+  font-style: italic;
+}
+
+.editor-content .ProseMirror s {
+  text-decoration: line-through;
+}
+
+.editor-content .ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.editor-content .ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin: 1em 0;
+}

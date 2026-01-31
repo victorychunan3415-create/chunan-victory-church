@@ -1,0 +1,230 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Custom font families for Warm Storytelling design */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Noto Sans TC', sans-serif;
+}
+
+/* 
+ * Design Philosophy: Warm Storytelling
+ * - Magazine-style layout with bold image-text mixing
+ * - Asymmetric but balanced composition
+ * - Rich layers and depth through overlapping, shadows, and blur
+ * - Warm color tones with soft lighting for a sense of belonging
+ */
+
+:root {
+  /* Warm Storytelling Color Palette */
+  --primary: #6B7F6A; /* Olive green - life and growth metaphor */
+  --primary-foreground: #F7F5F2; /* Warm white for text on primary */
+  --accent: #C7A45D; /* Warm gold - core of faith, used for CTAs */
+  --accent-foreground: #333333; /* Dark gray for text on accent */
+  
+  --sidebar-primary: #6B7F6A;
+  --sidebar-primary-foreground: #F7F5F2;
+  
+  --chart-1: #C7A45D;
+  --chart-2: #6B7F6A;
+  --chart-3: #8B9A8A;
+  --chart-4: #D4B76E;
+  --chart-5: #4A5D49;
+  
+  --radius: 1.5rem; /* 24px - soft rounded corners for card-based design */
+  
+  --background: #F7F5F2; /* Warm white - like paper texture, carries stories */
+  --foreground: #333333; /* Dark gray - readable without being oppressive */
+  
+  --card: #FFFFFF; /* Pure white for card backgrounds */
+  --card-foreground: #333333;
+  
+  --popover: #FFFFFF;
+  --popover-foreground: #333333;
+  
+  --secondary: #E8E6E1; /* Lighter beige for secondary elements */
+  --secondary-foreground: #333333;
+  
+  --muted: #E0DDD6; /* Muted beige */
+  --muted-foreground: #666666; /* Medium gray for muted text */
+  
+  --border: #D4D1CA; /* Soft border color */
+  --input: #D4D1CA;
+  --ring: #6B7F6A; /* Olive green for focus rings */
+  
+  --destructive: #C45B4C; /* Warm red for destructive actions */
+  --destructive-foreground: #FFFFFF;
+  
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #333333;
+  --sidebar-accent: #E8E6E1;
+  --sidebar-accent-foreground: #333333;
+  --sidebar-border: #D4D1CA;
+  --sidebar-ring: #6B7F6A;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.75; /* Generous line height for comfortable reading */
+  }
+  
+  /* Typography hierarchy for Warm Storytelling */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  
+  h1 {
+    font-size: 3.5rem; /* 56px */
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
+    font-size: 2.5rem; /* 40px */
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  h3 {
+    font-size: 1.75rem; /* 28px */
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem; /* 40px on mobile */
+    }
+    h2 {
+      font-size: 2rem; /* 32px on mobile */
+    }
+    h3 {
+      font-size: 1.5rem; /* 24px on mobile */
+    }
+  }
+  
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+  
+  /* Custom utility for gradient overlays on images */
+  .gradient-overlay {
+    position: relative;
+  }
+  
+  .gradient-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(51, 51, 51, 0.3), rgba(51, 51, 51, 0.7));
+    pointer-events: none;
+  }
+  
+  /* Floating card effect for Warm Storytelling design */
+  .floating-card {
+    @apply rounded-3xl shadow-lg transition-all duration-500 ease-out;
+  }
+  
+  .floating-card:hover {
+    @apply shadow-2xl;
+    transform: translateY(-4px);
+  }
+}
+
+/* Custom animations for Warm Storytelling */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 600ms ease-out forwards;
+}
