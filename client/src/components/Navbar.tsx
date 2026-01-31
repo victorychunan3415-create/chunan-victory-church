@@ -7,13 +7,16 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { getLoginUrl } from "@/const";
 
 export default function Navbar() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, loading, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,8 +75,27 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* Auth & CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-3">
+            {isAuthenticated && user ? (
+              <>
+                <span className="text-sm text-muted-foreground">歡迎, {user.name || user.email}</span>
+                <button
+                  onClick={logout}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  登出
+                </button>
+              </>
+            ) : !loading ? (
+              <a
+                href={getLoginUrl()}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                登入
+              </a>
+            ) : null}
             <Link href="/contact" asChild>
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-medium">
                 立即聯繫
@@ -116,6 +138,31 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+              {isAuthenticated && user ? (
+                <>
+                  <div className="px-4 py-3 text-sm text-muted-foreground border-t border-border">
+                    歡迎, {user.name || user.email}
+                  </div>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    登出
+                  </button>
+                </>
+              ) : !loading ? (
+                <a
+                  href={getLoginUrl()}
+                  className="block w-full text-center px-4 py-3 rounded-lg text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  登入
+                </a>
+              ) : null}
               <Link href="/contact" asChild>
                 <Button
                   className="w-full mt-2 bg-accent text-accent-foreground hover:bg-accent/90"
